@@ -52,10 +52,25 @@ def swap_ip(attached_server, server_id1, server_id2, ip_id, ip, reverse, orga_id
 
   print body
 
+  scw_meta = subprocess.check_output(['/usr/local/bin/scw-metadata-json'])
+
+  json_scw_meta=json.loads(scw_meta)
+
+  print json_scw_meta
+
+  current_server=json_scw_meta['name']
+  print current_server
+
+  server_id=get_server_id(current_server, token, 'https://cp-par1.scaleway.com/servers')
+
+  print server_id
+  body['server']=server_id
+
   token['Content-Type']='application/json'
   swap=requests.put(url, data=json.dumps(body), headers=token)
   print swap.status_code, swap.reason
   print swap.text
+
 
 if __name__ == '__main__':
   token_arg=sys.argv[1]
