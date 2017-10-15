@@ -79,12 +79,14 @@ if __name__ == '__main__':
   server2_arg=sys.argv[3]
   ip_arg=sys.argv[4]
   reverse_arg=sys.argv[5]
+  orga_arg=sys.argv[6]
 
   print token_arg, server1_arg, server2_arg, ip_arg, reverse_arg
 
   token={'X-Auth-Token': token_arg}
 
-  orga=get_organization_id(token, 'https://account.scaleway.com/organizations' )
+  #orga=get_organization_id(token, 'https://account.scaleway.com/organizations' )
+  orga=orga_arg
   server_id1=get_server_id(server1_arg, token, 'https://cp-par1.scaleway.com/servers')
   server_id2=get_server_id(server2_arg, token, 'https://cp-par1.scaleway.com/servers')
   ip_id, attached_server=get_ip_id(ip_arg, token, 'https://cp-par1.scaleway.com/ips')
